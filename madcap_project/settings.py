@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 # 📌 Middleware (ajout de Whitenoise pour Render)
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # 🔥 Ajout pour gérer les fichiers statiques sur Render
+    "whitenoise.middleware.WhiteNoiseMiddleware",  #  Ajout pour gérer les fichiers statiques sur Render
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -91,9 +91,9 @@ WSGI_APPLICATION = "madcap_project.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "madcapdb",  # Vérifie bien que c'est le bon nom de base
+        "NAME": "madcapdb",  #  bon nom de base
         "USER": "madcapuser",  # Utiliser "madcapuser" au lieu de "madcap_user"
-        "PASSWORD": "Basededonnemadcap",  # Mets ici ton vrai mot de passe
+        "PASSWORD": "Basededonnemadcap",  # vrai mot de passe
         "HOST": "localhost",
         "PORT": "5432",
     }
@@ -133,7 +133,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # 🔥 Optimisation pour Render
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  #  Optimisation pour Render
 
 # 📌 Gestion des fichiers médias (images uploadées)
 DEBUG = True

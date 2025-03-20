@@ -287,7 +287,7 @@ def livre_dor(request):
 
              # **Validation du numéro de téléphone**
             try:
-                telephone = validate_phone_number(telephone)  # Applique la même validation
+                telephone = validate_phone_number(telephone)  # Applique la même validation que page "Contact"
             except ValidationError as e:
                 messages.error(request, f"❌ Erreur téléphone : {e}")
                 return redirect('livre_dor')

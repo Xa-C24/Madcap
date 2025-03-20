@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // Ajout des prévisions météo pour les 3 prochains jours
+      // Ajout des prévisions météo pour les 6 prochains jours
       for (let i = 1; i <= 3; i++) {
         let dateForecast = new Date(data.daily.time[i]);
         let dayName = dateForecast.toLocaleDateString("fr-FR", { weekday: "long" });
