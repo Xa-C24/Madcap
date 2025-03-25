@@ -88,16 +88,24 @@ WSGI_APPLICATION = "madcap_project.wsgi.application"
 
 # Base de donnée en local
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "madcapdb",  #  bon nom de base
-        "USER": "madcapuser",  # Utiliser "madcapuser" au lieu de "madcap_user"
-        "PASSWORD": "Basededonnemadcap",  # vrai mot de passe
-        "HOST": "localhost",
-        "PORT": "5432",
+if ENVIRONMENT == "local":
+    # Base locale (pour ton ordi)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "madcapdb",
+            "USER": "madcapuser",
+            "PASSWORD": "Basededonnemadcap",
+            "HOST": "localhost",
+            "PORT": "5432",
+        }
     }
+else:
+    # Base distante (en ligne, sur Render)
+    DATABASES = {
+    "default": dj_database_url.config(default="postgres://madcapuser:Basededonnemadcap@localhost:5432/madcapdb", conn_max_age=600)
 }
+
 
 
 # 📌 Validation des mots de passe
