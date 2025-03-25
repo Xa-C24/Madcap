@@ -90,6 +90,7 @@ WSGI_APPLICATION = "madcap_project.wsgi.application"
 
 if ENVIRONMENT == "local":
     # Base locale (pour ton ordi)
+    print("🎯 Base locale activée")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
@@ -101,9 +102,10 @@ if ENVIRONMENT == "local":
         }
     }
 else:
+    print("🌐 Base distante activée (Render/Supabase)")
     # Base distante (en ligne, sur Render)
     DATABASES = {
-    "default": dj_database_url.config(default="postgres://madcapuser:Basededonnemadcap@localhost:5432/madcapdb", conn_max_age=600)
+        "default": dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 
