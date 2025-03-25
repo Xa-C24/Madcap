@@ -4,8 +4,6 @@ import dj_database_url
 import logging
 from django.utils.translation import gettext_lazy as _
 
-
-
 # 📌 Détection de l'environnement
 ENVIRONMENT = os.getenv("DJANGO_ENV", "local")  # "local" par défaut
 
@@ -25,8 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "change-me-in-prod")  # --🔴 Change cette valeur en production !--
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "madcap-70h2.onrender.com,madcap1874.onrender.com,127.0.0.1,localhost").split(",")
-
+ALLOWED_HOSTS = ["madcap1874.pythonanywhere.com", "127.0.0.1", "localhost"]
 
 # 📌 Applications installées
 INSTALLED_APPS = [
@@ -36,12 +33,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
-    "madcap_app",
-
-    # Cloudinary
-    #"cloudinary",
-    #"cloudinary_storage",
+    "madcap_app",  # Application de ton projet
 ]
 
 # 📌 Middleware (ajout de Whitenoise pour Render)
@@ -81,27 +73,7 @@ TEMPLATES = [
 # 📌 WSGI
 WSGI_APPLICATION = "madcap_project.wsgi.application"
 
-# 📌 Base de données (PostgreSQL sur Render)
-# DATABASES = {
-   # "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
-# }
-
-# Base de donnée en local
-
-# Si tu veux désactiver la base de données
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",  # Commenté ou supprimé
-        "NAME": "",  # Vide ou supprimé
-        "USER": "",  # Vide ou supprimé
-        "PASSWORD": "",  # Vide ou supprimé
-        "HOST": "",  # Vide ou supprimé
-        "PORT": "",  # Vide ou supprimé
-    }
-}
-
-
-
+DATABASES = {}
 
 # 📌 Validation des mots de passe
 AUTH_PASSWORD_VALIDATORS = [
@@ -110,14 +82,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
-
-# 📌 Configuration Email (exemple avec Gmail)
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
-# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
 
 # 📌 Logs
 logging.basicConfig(
@@ -132,14 +96,13 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# 📌 Gestion des fichiers statiques. (CSS, JS, images)
+# 📌 Gestion des fichiers statiques (CSS, JS, images)
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  #  Optimisation pour Render
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # Optimisation pour Render
 
 # 📌 Gestion des fichiers médias (images uploadées)
-DEBUG = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -153,7 +116,6 @@ LOCALE_PATHS = [BASE_DIR / 'locale']
 
 # 📌 Clé primaire par défaut
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 
 # 📌 Port (utile pour Render)
 PORT = os.getenv("PORT", "8000")
