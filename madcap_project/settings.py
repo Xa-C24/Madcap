@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-import dj_database_url
 import logging
 from django.utils.translation import gettext_lazy as _
 
@@ -39,7 +38,7 @@ INSTALLED_APPS = [
 # 📌 Middleware (ajout de Whitenoise pour Render)
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  #  Ajout pour gérer les fichiers statiques sur Render
+    # "whitenoise.middleware.WhiteNoiseMiddleware",  #  Ajout pour gérer les fichiers statiques sur Render
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -73,7 +72,12 @@ TEMPLATES = [
 # 📌 WSGI
 WSGI_APPLICATION = "madcap_project.wsgi.application"
 
-DATABASES = {}
+# Pas de base de données utilisée actuellement
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.dummy"
+    }
+}
 
 # 📌 Validation des mots de passe
 AUTH_PASSWORD_VALIDATORS = [
