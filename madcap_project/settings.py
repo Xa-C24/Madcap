@@ -74,10 +74,12 @@ WSGI_APPLICATION = "madcap_project.wsgi.application"
 
 # Pas de base de données utilisée actuellement
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.dummy"
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # 📌 Validation des mots de passe
 AUTH_PASSWORD_VALIDATORS = [
