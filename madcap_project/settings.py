@@ -88,25 +88,18 @@ WSGI_APPLICATION = "madcap_project.wsgi.application"
 
 # Base de donnée en local
 
-if ENVIRONMENT == "local":
-    # Base locale (pour ton ordi)
-    print("🎯 Base locale activée")
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "madcapdb",
-            "USER": "madcapuser",
-            "PASSWORD": "Basededonnemadcap",
-            "HOST": "localhost",
-            "PORT": "5432",
-        }
+# Si tu veux désactiver la base de données
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",  # Commenté ou supprimé
+        "NAME": "",  # Vide ou supprimé
+        "USER": "",  # Vide ou supprimé
+        "PASSWORD": "",  # Vide ou supprimé
+        "HOST": "",  # Vide ou supprimé
+        "PORT": "",  # Vide ou supprimé
     }
-else:
-    print("🌐 Base distante activée (Render/Supabase)")
-    # Base distante (en ligne, sur Render)
-    DATABASES = {
-        "default": dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
+
 
 
 
